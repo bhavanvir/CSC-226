@@ -5,7 +5,6 @@
 //modified by Rich Little on Sept. 23, 2016
 //modified by Rich Little on May 12, 2017
 
-
 import java.util.Random;
 public class QuickSelect {
     //Function to invoke quickSelect
@@ -37,6 +36,7 @@ public class QuickSelect {
         else
             return quickSelect(left, pIndex - 1, array, k);
     }
+    
     //TODO do Partition with a pivot
     private static int partition(int left, int right, int[] array, int pIndex){
         int pivot = array[pIndex];
@@ -64,13 +64,13 @@ public class QuickSelect {
         index = left+rand.nextInt(right-left+1);
         return index;
     }
+    
     //swap two elements in the array
     private static void swap(int[]array, int a, int b){
         int tmp = array[a];
         array[a] = array[b];
         array[b] = tmp;
     }
-
 
     //Our main function to test the algorithm
     public static void main (String[] args){
