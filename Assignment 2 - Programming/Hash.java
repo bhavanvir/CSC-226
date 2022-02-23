@@ -29,7 +29,11 @@ public class Hash {
 	 */
 	public int hash(String s) {
 		// TO DO: Write your code to compute the hashvalue of s
-		return s.hashCode();
+		int hashCode = 0;
+		for (int i = 0; i < s.length(); i++)
+			hashCode += (s.charAt(i) * Math.pow(31, (s.length() - i - 1)) % TableSize);
+
+		return hashCode % (TableSize - 1);
 	}
 
 	/*
@@ -41,14 +45,17 @@ public class Hash {
 
 		// Get the hash value of the string and start the search at that index.
 		// To DO: Use linear/quadratic probing to find an empty slot.
-		int i;
-		for (i = hash(s); T.getElement(i) != null; i = (i + 1) % TableSize) {
-			if (T.getElement(i).equals(s)) {
+		int hashValue = hash(s);
+
+		// Use linear probing to find an empty slot in the hash table.
+		for (int i = hashValue + 1; i != hashValue; i = ((i + 1) % TableSize)) {
+			if (T.getElement(i) == null) {
 				T.setElement(i, s);
+				return i;
 			}
 		}
 
-		return i;
+		return hashValue;
 	}
 
 	/*
@@ -59,14 +66,15 @@ public class Hash {
 	public int find(String s) {
 
 		// Get the hash value of the string and start the search at that index.
-		for (int i = hash(s); T.getElement(i) != null; i = (i + 1) % TableSize) {
+		// To Do: Use linear/quadratic probing to find the string.
+		int hashValue = hash(s);
+
+		for (int i = hashValue + 1; T.getElement(i) != null; i = (i + 1) % TableSize) {
 			if (T.getElement(i).equals(s))
 				return i;
 		}
 
 		return -1;
-
-		// To Do: Use linear/quadratic probing to find the string.
 
 	}
 
