@@ -31,7 +31,7 @@ public class Hash {
 		// TO DO: Write your code to compute the hashvalue of s
 		int hashCode = 0;
 		for (int i = 0; i < s.length(); i++)
-			hashCode += (s.charAt(i) * Math.pow(31, (s.length() - i - 1)) % TableSize);
+			hashCode += s.charAt(i) * Math.pow(31, (s.length() - i - 1)) % TableSize;
 
 		return hashCode % (TableSize - 1);
 	}
@@ -48,7 +48,7 @@ public class Hash {
 		int hashValue = hash(s);
 
 		// Use linear probing to find an empty slot in the hash table.
-		for (int i = hashValue + 1; i != hashValue; i = ((i + 1) % TableSize)) {
+		for (int i = hashValue + 1; i != hashValue; i = (i + 1) % TableSize) {
 			if (T.getElement(i) == null) {
 				T.setElement(i, s);
 				return i;
