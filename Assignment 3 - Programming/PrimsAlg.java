@@ -75,7 +75,7 @@ public class PrimsAlg {
             edgeWeight += e.weight();
         }
         // E) Evaluate the weight of MST
-        StdOut.printf("%.5f\n", edgeWeight);
+        StdOut.printf("Total weight is=%.5f\n", edgeWeight);
     }
 
 }
