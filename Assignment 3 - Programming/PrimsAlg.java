@@ -32,7 +32,7 @@ public class PrimsAlg {
                 assert marked[v] || marked[v];
                 if (marked[u] && marked[v])
                     continue;
-                mst.enqueue(e);
+                minpq.insert(e);
             }
 
             // If the priority queue is empty, then this means there are no more crossing
