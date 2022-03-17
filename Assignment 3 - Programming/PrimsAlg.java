@@ -52,20 +52,19 @@ public class PrimsAlg {
             int v = eMin.either(), u = eMin.other(v);
 
             if (!marked[u]) {
-                // assert !marked[u];
+                assert !marked[u];
                 marked[u] = true;
                 for (Edge e : G.adj(u))
                     if (!marked[e.other(u)])
                         mst.enqueue(e);
             }
             if (!marked[v]) {
-                // assert !marked[v];
+                assert !marked[v];
                 marked[v] = true;
                 for (Edge e : G.adj(v))
                     if (!marked[e.other(v)])
                         mst.enqueue(e);
             }
-
         }
 
         // Once an MST has been found, print its edges and total weight.
