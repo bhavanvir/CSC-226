@@ -17,6 +17,7 @@ public class Yourprim {
         Queue<Edge> mst = new Queue<Edge>(); // A linked list could also work.
         marked[0] = true;
 
+        // Data structures and initializations associated with the maximum spanning tree
         boolean[] markedM = new boolean[G.V()];
         Queue<Edge> mstM = new Queue<Edge>();
         markedM[0] = true;
@@ -36,9 +37,8 @@ public class Yourprim {
 
             // If the priority queue is empty, then this means there are no more crossing
             // edges so we are done.
-            if (minpq.isEmpty()) {
+            if (minpq.isEmpty())
                 break;
-            }
 
             // If the priority queue is not empty, then the minimum element in it is a
             // minimum crossing edge.
@@ -63,13 +63,11 @@ public class Yourprim {
                     if (!marked[e.other(v)])
                         minpq.insert(e);
             }
-
         }
 
         while (true) {
-            // In order to find a maxmium crossing edge, we loop through all the edges in
-            // the graph and add all of the crossing edges to a priority queue.
-
+            // In order to find a maximum crossing edge, we loop through all the edges in
+            // the graph and add all of the crossing edges to a maximum priority queue.
             MaxPQ<Edge> maxpq = new MaxPQ<Edge>();
 
             for (Edge e : G.edges()) {
@@ -82,9 +80,8 @@ public class Yourprim {
 
             // If the priority queue is empty, then this means there are no more crossing
             // edges so we are done.
-            if (maxpq.isEmpty()) {
+            if (maxpq.isEmpty())
                 break;
-            }
 
             // If the priority queue is not empty, then the maximum element in it is a
             // maximum crossing edge.
@@ -109,27 +106,26 @@ public class Yourprim {
                     if (!markedM[e.other(v)])
                         maxpq.insert(e);
             }
-
         }
 
-        // Once an MST has been found, print its edges and total weight.
+        // Once an MST (minimum) has been found, print its edges and total weight.
         double eWeight = 0.0;
         for (Edge e : mst) {
             StdOut.println(e);
             eWeight += e.weight();
         }
-        // E) Evaluate the weight of MST
+        // E) Evaluate the weight of MST (minimum)
         StdOut.printf("Total weight is=%.5f\n", eWeight);
 
         System.out.println();
 
-        // Once an MST has been found, print its edges and total weight.
+        // Once an MST (maximum) has been found, print its edges and total weight.
         eWeight = 0.0;
         for (Edge e : mstM) {
             StdOut.println(e);
             eWeight += e.weight();
         }
-        // E) Evaluate the weight of MST
+        // E) Evaluate the weight of MST (maximum)
         StdOut.printf("Total weight is=%.5f\n", eWeight);
 
     }
